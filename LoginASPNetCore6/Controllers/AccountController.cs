@@ -36,5 +36,19 @@ namespace LoginASPNetCore6.Controllers
                 return View("Index");
             }
         }
+
+        [Route("welcome")]
+        public IActionResult Welcome()
+        {
+            ViewBag.username = HttpContext.Session.GetString("username");
+            return View();
+        }
+
+        [Route("logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("username");
+            return View();
+        }
     }
 }
