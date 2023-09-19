@@ -28,8 +28,6 @@ namespace LoginASPNetCore6.Controllers
             var account = _accountService.Login(username, password);
             if(account != null)
             {
-                HttpContext.Session.SetString("username", username);
-                return RedirectToAction("welcome");
             } else
             {
                 ViewBag.msg = "Invalid";
