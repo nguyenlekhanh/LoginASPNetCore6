@@ -19,7 +19,15 @@ namespace LoginASPNetCore6.Controllers
         [Route("index")]
         public IActionResult Index()
         {
-            return View();
+            ViewBag.username = HttpContext.Session.GetString("username");
+
+            if (ViewBag.username != null)
+            {
+                return RedirectToAction("welcome");
+                
+            } else {
+                return View();
+            }
         }
 
         [Route("login")]
@@ -48,7 +56,7 @@ namespace LoginASPNetCore6.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("username");
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
